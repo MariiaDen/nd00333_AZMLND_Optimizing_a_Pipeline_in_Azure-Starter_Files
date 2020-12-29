@@ -6,9 +6,18 @@ In this project, we build and optimize an Azure ML pipeline using the Python SDK
 This model is then compared to an Azure AutoML run.
 
 ## Summary
-**In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
+The given dataset is bankmarketing_train.csv. This is a sample dataset provided by Microsoft. According to their documentation, the y column indicates if a customer subscribed to a fixed term deposit. The dataset contains information about customers - their job, marital status, education, loan, etc.
+This is a classification problem, where we tried to predict whether a customer is subscribed to a fixed-term deposit, or not. 
 
-**In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
+I have tried out to analyze the cleaned, as well as the raw data. After trying out different models, the best accuracy reached for different approaches was:
+
+| Data   | Approach | Accuracy |
+| ------------- | ---------|------------- |
+| Cleaned data | SKLearn  | 0.91181  |
+| Original data | AutoML - VotingEnsemble  | 0.91697  |
+| Cleaned data | AutoML - VotingEnsemble  | 0.91643  |
+
+As it can be seen, all three approaches have found best models with similar results. 
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
