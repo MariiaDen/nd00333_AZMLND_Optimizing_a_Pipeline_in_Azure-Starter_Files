@@ -22,7 +22,7 @@ As it can be seen, all three approaches have found best models with similar resu
 ## Scikit-learn Pipeline
 
 
-[AM Pipeline](https://github.com/MariiaDen/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files/tree/master/screenshots/"0. creating-and-optimizing-an-ml-pipeline.png")
+[AM Pipeline](screenshots/0. creating-and-optimizing-an-ml-pipeline.png)
 
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 
