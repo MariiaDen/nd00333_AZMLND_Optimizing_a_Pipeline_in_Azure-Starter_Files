@@ -19,7 +19,7 @@ I have tried out to analyze the cleaned, as well as the raw data. After trying o
 
 As it can be seen, all three approaches have found best models with similar results. 
 
-## Scikit-learn Pipeline
+## Introduction
 The aim of this project was to create the following pipeline: 
 
 ![Alt text](screenshots/0.%20creating-and-optimizing-an-ml-pipeline.png?raw=true "Optional Title")
@@ -39,7 +39,7 @@ In order to make the scripts work, a compute instance is needed. For that, a Sta
 
 This instance was named as "Udacity-Lab1". 
 
-### train.py
+## train.py
 The whole ML pipeline begins with the train.py script, which is pre-given. The main aim of this script is data preparation. There, the dataset had to be uploaded, cleaned and split into training and testing set. In order to read the data, the TabularDatasetFactory was used. 
 
 ```
@@ -47,16 +47,21 @@ datastore_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-
 ds = TabularDatasetFactory.from_delimited_files(path=datastore_path)
 ```
 
-The Logistic Regression accepts two arguments: regularization strength and maximum number of iterations to converge. Per default, they are equal to 1.0 and 100 respectively. 
+The Logistic Regression accepts two arguments: regularization strength and maximum number of iterations to converge. Per default, they are equal to 1.0 and 100 respectively. According to the definition, logistic regression is a statistical model that in its basic form uses a logistic function to model a binary dependent variable. Mathematically, a binary logistic model has a dependent variable with two possible values, such as "0" and "1".
+
+<img src="https://miro.medium.com/max/640/0*gKOV65tvGfY8SMem.png" height="200" />
+
 The train.py is then called from the Jupyter notebook. 
 
-### Jupyter notebook
+## Jupyter notebook
+### New experiment
 The Jupyter notebook has several logical parts. At first, the new experiment must be created. The one here was named as "quick-starts-experiment". 
 
 ![Alt text](screenshots/4.%20Workspace%20found.PNG?raw=true "Optional Title")
 
 After that, it was checked whether compute instance exists. The official Microsoft documentation was consulted here [Link](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-attach-compute-cluster?tabs=python). To create a persistent Azure Machine Learning Compute resource in Python, the vm_size and max_nodes properties were specified accordingly (STANDARD_D2_V2 and 4 nodes).
 
+### Hyper Drive
 After that, the preparations for experiment begin. Hyperparameters are adjustable parameters that let you control the model training process. Hyperparameter tuning is the process of finding the configuration of hyperparameters that results in the best performance. Azure ML automates this process. 
 First of all, there must have been defined two parameters, which need to be sent to train.py - regularization strength and maximum number of iterations. The RandomParameterSampling allows different combinations of both parameters when on the run. The regularization strength lies between 0.001 and 1 - the lower the value, the bigger impact. The maximal iterations - between 30 and 250. After having several issues with uniform, the choice function was selected to define hyperparameters as discrete. More about different functions can be read here: [Link](https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.parameter_expressions?view=azure-ml-py)
 
@@ -74,9 +79,12 @@ Random sampling supports discrete and continuous hyperparameters. It supports ea
 - Truncation selection policy
 - No termination policy
 
-In this work, the Bandit policy was selected. Bandit terminates runs where the primary metric is not within the specified slack factor/slack amount compared to the best performing run.
+In this work, the Bandit policy was selected. Bandit terminates runs where the primary metric is not within the specified slack factor/slack amount compared to the best performing run. After configurations were done, the Hyper Drive could be submitted for a run: 
 
-**Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
+![Alt text](screenshots/8.%20RunDetails.PNG?raw=true "Optional Title")
+
+#### AutoML
+
 
 **What are the benefits of the parameter sampler you chose?**
 
