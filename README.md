@@ -13,16 +13,49 @@ I have tried out to analyze the cleaned, as well as the raw data. After trying o
 
 | Data   | Approach | Accuracy |
 | ------------- | ---------|------------- |
-| Cleaned data | SKLearn  | 0.91181  |
+| Cleaned data | SKLearn - Logistic Regression  | 0.91181  |
 | Original data | AutoML - VotingEnsemble  | 0.91697  |
 | Cleaned data | AutoML - VotingEnsemble  | 0.91643  |
 
 As it can be seen, all three approaches have found best models with similar results. 
 
 ## Scikit-learn Pipeline
+The aim of this project was to create the following pipeline: 
+
+![Alt text](screenshots/0.%20creating-and-optimizing-an-ml-pipeline.png?raw=true "Optional Title")
+
+As can be seen at the first glance, the whole project consists of three major elements: 
+- train.py
+- Jupyter notebook
+- Research report
+
+Research report is the document you are reading now. The other two had to be uploaded to the Azure environment, to the Notebook first: 
+
+![Alt text](screenshots/1.%20Uploaded%20files.PNG?raw=true "Optional Title")
+
+In order to make the scripts work, a compute instance is needed. For that, a Standard_D2_v2 machine was selected:
+
+![Alt text](screenshots/2.%20Creating%20Compute.PNG?raw=true "Optional Title")
+
+This instance was named as "Udacity-Lab1". 
+
+### train.py
+The whole ML pipeline begins with the train.py script, which is pre-given. The main aim of this script is data preparation. There, the dataset had to be uploaded, cleaned and split into training and testing set. In order to read the data, the TabularDatasetFactory was used. 
+
+```
+datastore_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+ds = TabularDatasetFactory.from_delimited_files(path=datastore_path)
+```
+
+The Logistic Regression accepts two arguments: regularization strength and maximum number of iterations to converge. Per default, they are equal to 1.0 and 100 respectively. 
+The train.py is then called from the Jupyter notebook. 
+
+### Jupyter notebook
+The Jupyter notebook has several logical parts. At first, the new experiment must be created. The one here was called "quick-starts-experiment". 
+
+![Alt text](screenshots/4.%20Workspace%20found.PNG?raw=true "Optional Title")
 
 
-[AM Pipeline](screenshots/0\.\ creating-and-optimizing-an-ml-pipeline.png)
 
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 
