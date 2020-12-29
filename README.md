@@ -20,6 +20,10 @@ I have tried out to analyze the cleaned, as well as the raw data. After trying o
 As it can be seen, all three approaches have found best models with similar results. 
 
 ## Scikit-learn Pipeline
+
+
+[AM Pipeline](https://github.com/MariiaDen/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files/tree/master/screenshots/"0. creating-and-optimizing-an-ml-pipeline.png")
+
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 
 **What are the benefits of the parameter sampler you chose?**
