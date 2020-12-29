@@ -17,12 +17,6 @@ from azureml.data.dataset_factory import TabularDatasetFactory
 datastore_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 ds = TabularDatasetFactory.from_delimited_files(path=datastore_path)
 
-x, y = clean_data(ds)
-
-# TODO: Split data into train and test sets.
-### YOUR CODE HERE ###
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33)
-
 run = Run.get_context()
 
 def clean_data(data):
@@ -50,6 +44,8 @@ def clean_data(data):
     x_df["poutcome"] = x_df.poutcome.apply(lambda s: 1 if s == "success" else 0)
 
     y_df = x_df.pop("y").apply(lambda s: 1 if s == "yes" else 0)
+    # added return after job has failed due to NaN error
+    return x_df, y_df
     
 
 def main():
@@ -63,6 +59,13 @@ def main():
 
     run.log("Regularization Strength:", np.float(args.C))
     run.log("Max iterations:", np.int(args.max_iter))
+
+    x, y = clean_data(ds)
+
+    # TODO: Split data into train and test sets.
+    ### YOUR CODE HERE ###
+    # moved it here, since otherwise clean_data is not found during compute
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33)
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
 
