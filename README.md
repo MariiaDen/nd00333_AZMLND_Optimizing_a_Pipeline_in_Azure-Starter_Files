@@ -112,15 +112,22 @@ automl_config = AutoMLConfig(
 In the second try, the cleaned data was used. For that it was first turned into DataFrame by pandas, and then after all manipulations, it was transformed back to the Dataset, as the only data format that can be accepted as training data in AutoMLConfig. 
 
 ## Pipeline comparison
-**Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
+As previously mentioned, the programming part in AutoML is much shorter, therefore saves time. However, compute time took much longer - about 40 minutes, which is about four times longer than the first approach with HyperDrive. At the same time, if there is any error in python code or in parateters configurations, the Hyper Drive case might need to be re-run several times, which again takes compute time. Therefore, when going for one of two options, these factors need to be taken into considerations. 
+
+The accuracy of both approaches was practically equally good. This might be due to the high number of iterations selected for the logictic regression - up to 250. And as results have shown, the best result has worked with 250 iterations. 
 
 ## Future work
-**What are some areas of improvement for future experiments? Why might these improvements help the model?**
-Random sampling supports discrete and continuous hyperparameters. It supports early termination of low-performance runs. Some users do an initial search with random sampling and then refine the search space to improve results.
-
-In random sampling, hyperparameter values are randomly selected from the defined search space.
-
+As a part of the future work, the different hyperparameters might be reviewed and re-thinked. For example, the random sampling is often used as initial search, and then refined to improve results. Therefore, the random sampling could be the first thing to start with.
 
 ## Proof of cluster clean up
-**If you did not delete your compute cluster in the code, please complete this section. Otherwise, delete this section.**
-**Image of cluster marked for deletion**
+After the work is done, the cluster should be cleaned up. It can be deleted with the following command: 
+```
+cpu_cluster.delete()
+```
+Right after this code is executed, the changes can be seen:
+
+![Alt text](screenshots/19.%20Deleting.PNG?raw=true "Optional Title")
+
+After the compute instance is deleted, nothing is listed:
+
+![Alt text](screenshots/20.%20Deleted.PNG?raw=true "Optional Title")
