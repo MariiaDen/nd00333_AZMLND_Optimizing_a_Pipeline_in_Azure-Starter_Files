@@ -88,8 +88,28 @@ After the experiment has finished, the best run could be defined as follows:
 
 
 ### AutoML
+AutoML though took some more time to execute, it worked in a different way and showed a slightly better results. It can be used as alternative, since requires less programming skills. It trains and tunes a model using the target metric that is specified. Since less programming is needed, it saves some time and resources. 
 
+For AutoML two runs were done - with raw data, by only using the dataset as it is, and also with the cleaned data. 
+In the first case, the following data was used:
 
+```
+datastore_path = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+ds = TabularDatasetFactory.from_delimited_files(path=datastore_path)
+```
+Pay attention, that ds variable is ussed as training data:
+```
+automl_config = AutoMLConfig(
+    experiment_timeout_minutes=30,
+    task="classification",
+    primary_metric="accuracy",
+    training_data=ds,
+    label_column_name="y",
+    n_cross_validations=5,
+    compute_target=cpu_cluster)
+```
+
+In the second try, the cleaned data was used. For that it was first turned into DataFrame by pandas, and then after all manipulations, it was transformed back to the Dataset, as the only data format that can be accepted as training data in AutoMLConfig. 
 
 ## Pipeline comparison
 **Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
