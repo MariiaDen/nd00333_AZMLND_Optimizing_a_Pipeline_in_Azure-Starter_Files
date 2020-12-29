@@ -51,11 +51,30 @@ The Logistic Regression accepts two arguments: regularization strength and maxim
 The train.py is then called from the Jupyter notebook. 
 
 ### Jupyter notebook
-The Jupyter notebook has several logical parts. At first, the new experiment must be created. The one here was called "quick-starts-experiment". 
+The Jupyter notebook has several logical parts. At first, the new experiment must be created. The one here was named as "quick-starts-experiment". 
 
 ![Alt text](screenshots/4.%20Workspace%20found.PNG?raw=true "Optional Title")
 
+After that, it was checked whether compute instance exists. The official Microsoft documentation was consulted here [Link](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-create-attach-compute-cluster?tabs=python). To create a persistent Azure Machine Learning Compute resource in Python, the vm_size and max_nodes properties were specified accordingly (STANDARD_D2_V2 and 4 nodes).
 
+After that, the preparations for experiment begin. Hyperparameters are adjustable parameters that let you control the model training process. Hyperparameter tuning is the process of finding the configuration of hyperparameters that results in the best performance. Azure ML automates this process. 
+First of all, there must have been defined two parameters, which need to be sent to train.py - regularization strength and maximum number of iterations. The RandomParameterSampling allows different combinations of both parameters when on the run. The regularization strength lies between 0.001 and 1 - the lower the value, the bigger impact. The maximal iterations - between 30 and 250. After having several issues with uniform, the choice function was selected to define hyperparameters as discrete. More about different functions can be read here: [Link](https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.parameter_expressions?view=azure-ml-py)
+
+```
+ps = RandomParameterSampling(
+    {
+        "--C": choice(0.001, 0.01, 0.1, 1.0),
+        "--max_iter": choice(30, 50, 100, 250)
+    }
+)
+```
+Random sampling supports discrete and continuous hyperparameters. It supports early termination of low-performance runs. Accuracy was selected as the primary metric, which is looked at to get the highest value. Apart of that, the early termination policy was defined. This helps to save time by stopping runs in case of poor performance. There are four different termination policies to choose from:
+- Bandit policy
+- Median stopping policy
+- Truncation selection policy
+- No termination policy
+
+In this work, the Bandit policy was selected. Bandit terminates runs where the primary metric is not within the specified slack factor/slack amount compared to the best performing run.
 
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 
@@ -71,6 +90,10 @@ The Jupyter notebook has several logical parts. At first, the new experiment mus
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
+Random sampling supports discrete and continuous hyperparameters. It supports early termination of low-performance runs. Some users do an initial search with random sampling and then refine the search space to improve results.
+
+In random sampling, hyperparameter values are randomly selected from the defined search space.
+
 
 ## Proof of cluster clean up
 **If you did not delete your compute cluster in the code, please complete this section. Otherwise, delete this section.**
