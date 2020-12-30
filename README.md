@@ -187,7 +187,9 @@ This concludes, that the best Hyper Drive run has reached the similar accuracy w
 ## Pipeline comparison
 As previously mentioned, the programming part in AutoML is much shorter, therefore saves time. However, compute time took much longer - about 40 minutes, which is about four times longer than the first approach with HyperDrive. At the same time, if there is any error in python code or in parateters configurations, the Hyper Drive case might need to be re-run several times, which again takes compute time. Therefore, when going for one of two options, these factors need to be taken into considerations. 
 
-The accuracy of both approaches was practically equally good. This might be due to the high number of iterations selected for the logictic regression - up to 250. And as results have shown, the best result has worked with 250 iterations. 
+The accuracy of both approaches was practically equally good. This might be due to the high number of iterations selected for the logictic regression - up to 250. And as results have shown, the best result has worked with 250 iterations.
+
+The two pipelines are completely different by their ways of work. Under the following link https://github.com/MariiaDen/nd00333_AZMLND_Optimizing_a_Pipeline_in_Azure-Starter_Files/blob/master/VotingEnsemblePipeline.txt the pipeline for VotingEnsemble model can be found. If even compared to the XGBoost pipeline, shown on the screenshot above, though both generated during the AutoML run, the both models are completely different, since these are different methods used. 
 
 ## Future work
 As a part of the future work, the different hyperparameters might be reviewed and re-thinked. For example, the random sampling is often used as initial search, and then refined to improve results. Therefore, the random sampling could be the first thing to start with.
