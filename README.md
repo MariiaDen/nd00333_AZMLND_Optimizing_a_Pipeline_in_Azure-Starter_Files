@@ -111,6 +111,13 @@ automl_config = AutoMLConfig(
 
 In the second try, the cleaned data was used. For that it was first turned into DataFrame by pandas, and then after all manipulations, it was transformed back to the Dataset, as the only data format that can be accepted as training data in AutoMLConfig. 
 
+The AutoML has defined the following top fetures by their importance:
+- duration
+- nr.employed
+- emp.variate
+
+These are the key predictors that model uses to generate results.
+
 ## Pipeline comparison
 As previously mentioned, the programming part in AutoML is much shorter, therefore saves time. However, compute time took much longer - about 40 minutes, which is about four times longer than the first approach with HyperDrive. At the same time, if there is any error in python code or in parateters configurations, the Hyper Drive case might need to be re-run several times, which again takes compute time. Therefore, when going for one of two options, these factors need to be taken into considerations. 
 
