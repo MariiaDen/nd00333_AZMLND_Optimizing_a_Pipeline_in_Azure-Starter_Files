@@ -182,6 +182,8 @@ The pipeline looks as follows:
 
 ![Alt text](screenshots/Pipeline.PNG?raw=true "Optional Title")
 
+This concludes, that the best Hyper Drive run has reached the similar accuracy with regularization strength of 1 and 250 iterations. Interestingly, the second best Hyper Drive run was reached with regularization strength of 0.1 and 30 iterations. The XGBoost method reached its accuracy with learning rate 0.1 and 100 iterations. 
+
 ## Pipeline comparison
 As previously mentioned, the programming part in AutoML is much shorter, therefore saves time. However, compute time took much longer - about 40 minutes, which is about four times longer than the first approach with HyperDrive. At the same time, if there is any error in python code or in parateters configurations, the Hyper Drive case might need to be re-run several times, which again takes compute time. Therefore, when going for one of two options, these factors need to be taken into considerations. 
 
