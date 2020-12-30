@@ -128,6 +128,8 @@ The best model is still the same, and has following most important features:
 
 ![Alt text](screenshots/Best%20individual%20feature.PNG?raw=true "Optional Title")
 
+![Alt text](screenshots/Summary%20importance.PNG?raw=true "Optional Title")
+
 By selecting an option "Explain model" we can also generate results for other models. Let's check the third best:
 
 ![Alt text](screenshots/Third%20best.PNG?raw=true "Optional Title")
