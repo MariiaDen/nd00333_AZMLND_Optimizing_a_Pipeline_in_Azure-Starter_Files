@@ -122,6 +122,12 @@ The AutoML has defined the following top fetures by their importance:
 
 These are the key predictors that model uses to generate results.
 
+After redoing the lab, by skipping Jupyter Notebook and generating directly the AutoML work, the results turned out to be similar. 
+The best model is still the same, and has following most important features: 
+![Alt text](screenshots/Best%20run.PNG?raw=true "Optional Title")
+
+![Alt text](screenshots/Best%20individual%20feature.PNG?raw=true "Optional Title")
+
 By selecting an option "Explain model" we can also generate results for other models. Let's check the third best:
 
 ![Alt text](screenshots/Third%20best.PNG?raw=true "Optional Title")
