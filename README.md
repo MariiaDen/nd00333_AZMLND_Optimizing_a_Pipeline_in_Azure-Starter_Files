@@ -138,7 +138,7 @@ After generating results, we come up with the same most important features:
 
 ![Alt text](screenshots/XGBoost.PNG?raw=true "Optional Title")
 
-After third project submition attempt, the following code was added: 
+After third project submition attempt, the following code was added (taken from this source -> https://github.com/Azure/MachineLearningNotebooks/issues/556#issuecomment-527552013): 
 
 ```
 from pprint import pprint
