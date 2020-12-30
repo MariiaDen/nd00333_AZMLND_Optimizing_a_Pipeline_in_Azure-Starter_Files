@@ -138,6 +138,50 @@ After generating results, we come up with the same most important features:
 
 ![Alt text](screenshots/XGBoost.PNG?raw=true "Optional Title")
 
+After third project submition attempt, the following code was added: 
+
+```
+from pprint import pprint
+
+def print_model(model, prefix=""):
+    for step in model.steps:
+        print(prefix + step[0])
+        if hasattr(step[1], 'estimators') and hasattr(step[1], 'weights'):
+            pprint({'estimators': list(e[0] for e in step[1].estimators), 'weights': step[1].weights})
+            print()
+            for estimator in step[1].estimators:
+                print_model(estimator[1], estimator[0]+ ' - ')
+        elif hasattr(step[1], '_base_learners') and hasattr(step[1], '_meta_learner'):
+            print("\nMeta Learner")
+            pprint(step[1]._meta_learner)
+            print()
+            for estimator in step[1]._base_learners:
+                print_model(estimator[1], estimator[0]+ ' - ')
+        else:
+            pprint(step[1].get_params())
+            print()
+
+print_model(best_automl_model)
+```
+
+For the sake of the time as the current best version was taken the XGBoostClassifier, which has the accuracy of 0.91561. The results clearly show that the model has following parameters:
+| Parameter   | Value | 
+| ------------- | ---------|
+|'learning_rate'| 0.1 |
+| 'min_child_weight'| 1 |
+| 'missing' | nan |
+| 'n_estimators'| 100|
+
+Alternatively, the resuts can be generated with the following code:
+
+```
+print(best_automl_model)
+```
+
+The pipeline looks as follows:
+
+![Alt text](screenshots/Pipeline.PNG?raw=true "Optional Title")
+
 ## Pipeline comparison
 As previously mentioned, the programming part in AutoML is much shorter, therefore saves time. However, compute time took much longer - about 40 minutes, which is about four times longer than the first approach with HyperDrive. At the same time, if there is any error in python code or in parateters configurations, the Hyper Drive case might need to be re-run several times, which again takes compute time. Therefore, when going for one of two options, these factors need to be taken into considerations. 
 
