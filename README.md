@@ -111,6 +111,10 @@ automl_config = AutoMLConfig(
 
 In the second try, the cleaned data was used. For that it was first turned into DataFrame by pandas, and then after all manipulations, it was transformed back to the Dataset, as the only data format that can be accepted as training data in AutoMLConfig. 
 
+The best run had an ID AutoML_a892b78e-55a3-4bbe-9978-22ac4cfadd88_24, and can be seen below:
+
+![Alt text](screenshots/18.%20Run%20Complete%20with%20Cleanup_3.PNG?raw=true "Optional Title")
+
 The AutoML has defined the following top fetures by their importance:
 - duration
 - nr.employed
