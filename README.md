@@ -122,6 +122,14 @@ The AutoML has defined the following top fetures by their importance:
 
 These are the key predictors that model uses to generate results.
 
+By selecting an option "Explain model" we can also generate results for other models. Let's check the third best:
+
+![Alt text](screenshots/Third%20best.PNG?raw=true "Optional Title")
+
+After generating results, we come up with the same most important features:
+
+![Alt text](screenshots/XGBoost.PNG?raw=true "Optional Title")
+
 ## Pipeline comparison
 As previously mentioned, the programming part in AutoML is much shorter, therefore saves time. However, compute time took much longer - about 40 minutes, which is about four times longer than the first approach with HyperDrive. At the same time, if there is any error in python code or in parateters configurations, the Hyper Drive case might need to be re-run several times, which again takes compute time. Therefore, when going for one of two options, these factors need to be taken into considerations. 
 
